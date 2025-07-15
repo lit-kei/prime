@@ -32,10 +32,19 @@
     <div class="setting">
         <h2 class="set-label">設定</h2>
         <div class="input">
-        
-            <label for="second">シャトルランの速さ（秒）：</label>
-            <span id="interval">4</span>
-            <input type="range" id="second" min="1" max="10" step="1" value="4">
+            <label for="speed">シャトルランの速さ（秒）</label>
+            <span id="speed-span">：4</span>
+            <input type="range" id="speed" min="1" max="10" step="1" value="4">
+        </div>
+        <div class="input">
+            <label for="num">素因数の個数</label>
+            <span id="num-span">：5</span>
+            <input type="range" id="num" min="2" max="10" step="1" value="5">
+        </div>
+        <div class="input">
+            <label for="kind">素因数の種類（小さい順）</label>
+            <span id="kind-span">：6</span>
+            <input type="range" id="kind" min="2" max="10" step="1" value="6">
         </div>
     </div>
     <script src="prime.js"></script>

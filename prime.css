@@ -137,14 +137,19 @@ button.process:hover {
 .input {
     display: flex;
     align-items: center;
+    position: relative;
 }
 .input label, .input span {
     font-size: 24px;
 }
+.input span {
+    position: absolute;
+    left: 280px;
+}
 .input input {
+    position: absolute;
     height: 30px;
-    font-size: 20px;
-    margin-left: 10px;
     width: 150px;
     outline: none;
+    left: 340px;
 }

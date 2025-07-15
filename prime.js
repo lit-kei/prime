@@ -50,11 +50,11 @@ for (let i = 0; i < primes.length; i++) {
 
 async function processLoop() {
     while (isProcessing) {
-        pArr = [];
         txt = "";
         answer.innerHTML = "&#x00A0";
         //前回と同じ数が出たら繰り返す
         do {
+            pArr = [];
             num = 1;
             for (let i = 0; i < NoP; i++) {
                 let rand = Math.floor(Math.random() * primes[kind].s);

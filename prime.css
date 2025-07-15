@@ -1,0 +1,150 @@
+/* 基本的なリセット */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    top: 0;
+    z-index: 10;
+    max-width: 100%;
+    height: 110px;
+    background-color: #00796b;
+    position: sticky;
+    margin-bottom: 25px;
+}
+
+.header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.header-inner * {
+    color: white;
+}
+.header-inner h1 {
+    margin: 0 30px;
+    color: #004d40; /* 濃い緑青 */
+    font-size: 2rem;
+    margin-left: 20px; /* 左寄せ */
+    color: white;
+}
+.header-inner a,
+.other-site a {
+    margin-left: 40px;
+    text-decoration: none;
+}
+.header-inner a:hover,
+.other-site a:hover {
+    text-decoration: underline;
+}
+.other-site {
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-left: 2px solid white;
+}
+
+
+/* 全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0f7fa; /* 明るい青色 */
+    color: #00796b; /* 濃い青緑 */
+    display: flex;
+    justify-content: flex-start; /* 左寄せ */
+    flex-direction: column;
+}
+
+/* 問題と答えのセクション */
+#que, #ans {
+    background-color: #b2ebf2; /* 淡い青 */
+    padding: 20px;
+    margin: 25px 20px;
+    border-radius: 8px;
+    width: auto; /* 幅を自動で調整 */
+}
+
+/* サブ見出し */
+h2 {
+    color: #004d40;
+    font-size: 2rem;
+}
+.a {
+    margin: 20px 20px 20px 0;
+}
+
+/* 問題と答えの文字 */
+strong p {
+    font-size: 1.8rem;
+    color: #00796b;
+}
+
+/* ボタン */
+button {
+    background-color: #00796b; /* ボタンの背景色: 濃い青緑 */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 20px;
+}
+
+button:hover {
+    background-color: #004d40; /* ホバー時の背景色 */
+}
+button.process {
+    background-color: #bd0a0a;
+}
+button.process:hover {
+    background-color: #770505;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 20px 25px 20px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #00796b; /* 緑 */
+  width: 0%;
+  transition: width 4s linear;
+}
+.progress.back {
+    background-color: orange;
+}
+
+.setting {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #00796b;
+    border-radius: 10px;
+}
+.set-label {
+    margin-bottom: 20px;
+}
+.input {
+    display: flex;
+    align-items: center;
+}
+.input label, .input span {
+    font-size: 24px;
+}
+.input input {
+    height: 30px;
+    font-size: 20px;
+    margin-left: 10px;
+    width: 150px;
+    outline: none;
+}

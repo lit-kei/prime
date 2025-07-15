@@ -18,11 +18,29 @@ let finish = true;
 let interval = 4000;
 let pArr = [];
 let txt = "";
+let last = 0;
+let num = 1;
 
 const question = document.getElementById('question');
 const answer = document.getElementById('answer');
 const button = document.getElementById('button');
 const progress = document.getElementById('progress');
+
+let setting = JSON.parse(localStorage.getItem('prime'));
+if (setting != null) {
+    document.getElementById('speed').value = setting[0];
+    document.getElementById('speed-span').textContent = "：" + setting[0];
+    interval = setting[0] * 1000;
+    document.getElementById('progress').style.transition = `width ${setting[0]}s linear`;
+
+    document.getElementById('num').value = setting[1];
+    document.getElementById('num-span').textContent = "：" + setting[1];
+    NoP = setting[1];
+
+    document.getElementById('kind').value = setting[2];
+    document.getElementById('kind-span').textContent = "：" + setting[2];
+    kind = setting[2] - 1;
+}
 
 let sum = 0;
 for (let i = 0; i < primes.length; i++) {
@@ -32,22 +50,25 @@ for (let i = 0; i < primes.length; i++) {
 
 async function processLoop() {
     while (isProcessing) {
-        let num = 1;
         pArr = [];
         txt = "";
         answer.innerHTML = "&#x00A0";
-
-        for (let i = 0; i < NoP; i++) {
-            let rand = Math.floor(Math.random() * primes[kind].s);
-            let j = 0;
-            for (j = 0; j < primes.length; j++) {
-                rand -= primes[j].p;
-                if (rand < 0) break;
+        //前回と同じ数が出たら繰り返す
+        do {
+            num = 1;
+            for (let i = 0; i < NoP; i++) {
+                let rand = Math.floor(Math.random() * primes[kind].s);
+                let j = 0;
+                for (j = 0; j < primes.length; j++) {
+                    rand -= primes[j].p;
+                    if (rand < 0) break;
+                }
+                num *= primes[j].n;
+                pArr.push(primes[j].n);
             }
-            num *= primes[j].n;
-            pArr.push(primes[j].n);
-        }
+        } while (last == num)
         pArr.sort((a, b) => a - b);
+        last = num;
 
         question.textContent = num;
         progress.style.transition = `width ${interval / 1000}s linear`;
@@ -100,19 +121,25 @@ button.addEventListener('click', () => {
 
 document.getElementById('speed').addEventListener('input', () => {
     const data = document.getElementById('speed').value;
-    if (data >= 1 && data <= 10) {
-        interval = data * 1000;
-        document.getElementById('progress').style.transition = `width ${data}s linear`;
-        document.getElementById('speed-span').textContent = "：" + String(data);
-    }
+    interval = data * 1000;
+    document.getElementById('progress').style.transition = `width ${data}s linear`;
+    document.getElementById('speed-span').textContent = "：" + String(data);
+    saveData();
 });
 document.getElementById('num').addEventListener('input', () => {
     const data = document.getElementById('num').value;
     NoP = data;
     document.getElementById('num-span').textContent = "：" + String(data);
+    saveData();
 });
 document.getElementById('kind').addEventListener('input', () => {
     const data = document.getElementById('kind').value;
     kind = data - 1;
     document.getElementById('kind-span').textContent = "：" + String(data);
+    saveData();
 });
+
+function saveData() {
+    setting = [document.getElementById('speed').value, document.getElementById('num').value, document.getElementById('kind').value];
+    localStorage.setItem('prime', JSON.stringify(setting));
+}

@@ -127,7 +127,7 @@ button.process:hover {
 .setting {
     margin: 20px;
     padding: 20px;
-    border: 1px solid #00796b;
+    border: 2px solid #00796b;
     border-radius: 10px;
 }
 .set-label {
